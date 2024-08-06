@@ -1,0 +1,3 @@
+ctrl+p //for searching any file quickly that is there in vs code
+ctrl+t //for finding any function in vs code
+ctrl+` //for opening terminal in vs code

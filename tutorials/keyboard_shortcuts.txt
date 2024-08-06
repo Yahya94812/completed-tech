@@ -1,0 +1,13 @@
+win+E //for opening file manager
+win+D //for minimize all windows
+win+up arrow //for full screen
+win+down arrow//for back from full screen
+win+right or left arrow //for multi tasking
+alt+tab //for switching windows
+win+tab //or seeing all windows
+ctrl+shift+N //for genrating a new file
+win+shift+s //for screen shot and edit that only at that time
+win+L //for locking PC
+win+. //for emojies
+win+V //for clipboard
+alt+left arrow //for going back in same file

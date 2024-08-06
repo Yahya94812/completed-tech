@@ -1,0 +1,2 @@
+about None data type
+pop function on sets
