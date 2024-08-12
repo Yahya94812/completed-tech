@@ -1,0 +1,156 @@
+<!-- HyperText Markup Language -->
+ <!-- HyperText: This refers to the capability of HTML to link documents to each other. -->
+  <!-- Markup: This indicates that HTML uses a set of symbols or codes (tags) to annotate a document -->
+<!-- every home page is named as index.html by default for server to detect -->
+ <!-- it is not case sensitive -->
+<!-- write ! and click for suggestion for boilerplate code -->
+<!-- press ctrl+/ for making comments -->
+<!-- use live server extension and go live from bottom -->
+<!-- use MDN link by placing arrow on the tags -->
+<!-- use inspect method to see the code of other websites -->
+<!-- use toggle word wrap or alt+z for fit total text on the screen -->
+<!DOCTYPE html>
+<html lang="en"><!--root tag-->
+<head><!--it is container for meta data -->
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title><!--title of the page-->
+</head>
+<body><!-- contain all data render by browser-->
+
+    <p>this is a paragraph</p><!--it is used to add paragraph in html page-->
+    <!-- hear the src is a relative path -->
+    <img src="./pic.png" alt="pic of star" height="200px"><br><!--the img tag has no content in between-->
+    <!-- always use forward slashes (/) for paths in HTML to ensure compatibility and correctness across different platforms and browsers -->
+    <img src="picture/pic.png" alt="pic of star" width="200px"><br>
+
+    <img src="C:\Users\yahya\OneDrive\completed-tech\tutorials\html css and javascript\pic.png" alt="pic of star" height="200px"><br>
+    
+
+    <h1>this is in h1</h1>
+    <h6>this is in h6</h6>
+    <b>this is bold letters</b><br>
+    <i>this is italic letters</i><br>
+    <u>this is under line letters</u><br>
+    <big>this is big letters</big><br>
+    <small>this is small letters</small>
+    <hr>
+    <!-- horizontal rule {margin} -->
+    <sup>H</sup><sub>2</sub><sup>O</sup>
+    <pre>
+        this is 
+            as it
+                is
+    </pre>
+
+    <!-- Semantic tags in HTML are elements that clearly describe their meaning in a human- and machine-readable way. These tags provide information about the type of content contained within them and it help SOE -->
+    <header>this is header</header>
+    <!-- <nav>: Defines a set of navigation links. -->
+        <nav>
+            <ul>
+                <li><a href="/home">Home</a></li>
+                <li><a href="/services">Services</a></li>
+            </ul>
+        </nav>
+           
+    <main>
+        <section>this is section</section>
+        <article>this is article</article>
+        <aside>this is aside</aside><!--it contain ads-->
+    </main>
+    <footer>this is footer</footer>
+    <!-- these are {i.e.. semantic tags} used by the browser -->
+
+    <a href="links.html">click here</a><br><!--it has no content in between-->
+    <a href="links.html" target="_main">click here for open in new tab</a><br><!--hyper reference from hyper text=link document to others as above def of html and target=_main used to open webpage in new tab-->
+    <a href="links.html"><img src="plink.png" alt="plink" height="100px"></a> <!--the anchor tag has content in between-->
+
+    <!-- The <div> and <span> tags are two of the most commonly used HTML elements for grouping and applying styles or scripts to parts of web pages. They are non-semantic tags, meaning they don't inherently convey any meaning -->
+
+    <div id="id1" class="class1"> <!--Block Element (takes full width)-->
+        <p>this is a container block level tag use to style the whole block by selecting all elements in it</p>
+    </div>
+    <!-- The <span> tag is an inline element used to group smaller pieces of text or elements within a line of text. -->
+    <!-- Inline Element (takes width as per size) -->
+    <span>
+        <p>this is opp to the div tag and it is a contaner inline level tag use for styling individual elements in this block</p>
+    </span>
+
+    <ol>
+        <li>this</li>
+        <li>ordered</li>
+        <li>list</li>
+    </ol>
+
+    <ul>
+        <li>This</li>
+        <li>is</li>
+        <li>unordered list</li>
+    </ul>
+
+    <!-- <thead> to wrap table head
+        <tbody> to wrap table body -->
+    
+    <table >
+        <caption>my table</caption><!--use caption inside the table tag-->
+        <thead>
+            <tr><th colspan="2">DATA</th></tr><!--colspan is the attribute of th or td tag-->
+            <tr><th>name</th><th>class</th></tr></thead>
+        <tbody><tr><td>yahay</td><td>14</td></tr></tbody>
+        
+        
+    </table>
+
+    <!-- forms are used to collect data from user and action attribute is used to what action needed to perform when form is submitted-->
+     <form action="./index.php">
+        <div><label for="username">name</label><input type="text" id="username" placeholder="enter">
+        </div>
+        
+            <div><!--radio buttons belong to same names are connected to each other so you click any one at a time-->
+                <input type="radio" value="class IX" name="class" id="id1">
+                <label for="id1">Class IX</label><!--label with matching id make label clickable same with check boxes-->
+            </div>
+            <div>
+                <input type="radio" value="class X" name="class" id="id2">
+                <label for="id2">Class X</label>
+            </div>
+
+            <div>
+                <input type="checkbox" name="za" id="12">
+                <label for="12">checkbox</label>
+            </div>
+            <div>
+                <input type="checkbox" name="za" id="22">
+                <label for="22">checkbox</label>
+            </div>
+            <textarea id="id" placeholder="enter something"></textarea>
+            <br>
+            <select id="id"><!--it is dropdown list-->
+            <option>Delhi </option>
+            <option> Delhi1 </option>
+            <option> Delhi2 </option>
+            </select>
+            
+        
+        
+     </form>
+
+     <iframe src="https://www.csun.edu/~vcpsy00h/creativity/define.htm" frameborder="0"></iframe> <!--other webpage under my webpage and the above link change from <video src="https://www.youtube.com/watch?v=vSJsz7tNuyU"></video>-->
+
+
+     <iframe src="https://www.youtube.com/embed/vSJsz7tNuyU" frameborder="0" allowfullscreen></iframe>
+
+
+     <video width="640" height="360" controls>
+        <source src="sample video.mp4" type="video/mp4">
+        Your browser does not support the video tag.
+
+ 
+    </video>
+
+    <video width="640" height="360" controls src="sample video.mp4">
+        Your browser does not support the video tag.
+    </video>
+    
+</body>
+</html>

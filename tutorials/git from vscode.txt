@@ -1,0 +1,10 @@
+You can intialize git repo from vscode
+You can rename branch by writing “rename branch” in command palate 
+U means untracked files press + button on rhs for adding it in staged changes
+A means new file is added to repository and is staged, write comment message in above field and click right mark above the writing field to commit
+You can creat a brach using "creat branch" command in command pallate and name new branch
+if you add new line green line and if you modify a line blue zigzag line if you delete any line you can see the read mark by clickig on which you can get deleted lines
+click on the file in changes and you can see the recent changes
+You can merge branches by clicking on three dots in git section of vscode and in branch section click on merge
+
+
