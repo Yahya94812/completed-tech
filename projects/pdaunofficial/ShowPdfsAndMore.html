@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GitHub PDF Viewer</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #1a1a1a;
+            color: #f0f0f0;
+            margin: 0;
+            padding: 20px;
+        }
+        h1 {
+            text-align: center;
+        }
+        #pdf-list {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+        .pdf-item {
+            background-color: #2a2a2a;
+            border-radius: 10px;
+            margin: 10px;
+            padding: 20px;
+            width: 300px;
+            text-align: center;
+        }
+        #upload-box {
+            background-color: #2a2a2a;
+            border-radius: 10px;
+            margin: 0 auto;
+            padding: 20px;
+            width: 300px;
+            text-align: center;
+        }
+        .pdf-name {
+            font-weight: bold;
+            margin-bottom: 10px;
+        }
+        .pdf-preview {
+            width: 100%;
+            height: 200px;
+            object-fit: contain;
+            margin-bottom: 10px;
+        }
+        .download-btn, #upload-more-btn {
+            background-color: #4CAF50;
+            border: none;
+            color: white;
+            padding: 10px 20px;
+            text-align: center;
+            text-decoration: none;
+            display: inline-block;
+            font-size: 16px;
+            margin: 4px 2px;
+            cursor: pointer;
+            border-radius: 5px;
+        }
+    </style>
+</head>
+<body>
+    <h1>Download PYQs, Notes and More</h1>
+    <div id="upload-box">
+        <h2>Upload PYQs and Notes</h2>
+        <button id="upload-more-btn">Upload and more...</button>
+    </div>
+    <div id="pdf-list"></div>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/2.9.359/pdf.min.js"></script>
+    <script>
+        const githubUsername = 'PdaStudents';
+        const repoName = 'Academic-Resources';
+        const pdfDirectory = './8sem';
+
+        async function fetchPDFList() {
+            const apiUrl = `https://api.github.com/repos/${githubUsername}/${repoName}/contents/${pdfDirectory}`;
+            try {
+                const response = await fetch(apiUrl);
+                if (!response.ok) {
+                    throw new Error(`HTTP error! status: ${response.status}`);
+                }
+                const data = await response.json();
+                if (!Array.isArray(data)) {
+                    throw new Error('Received data is not an array');
+                }
+                return data.filter(file => file.name.toLowerCase().endsWith('.pdf'));
+            } catch (error) {
+                console.error('Error fetching PDF list:', error);
+                return [];
+            }
+        }
+
+        async function renderPDFList() {
+            const pdfList = await fetchPDFList();
+            const pdfListElement = document.getElementById('pdf-list');
+
+            pdfListElement.innerHTML = '';
+
+            if (pdfList.length === 0) {
+                pdfListElement.innerHTML = '<p>No PDF files found or there was an error fetching the files.</p>';
+                return;
+            }
+
+            for (const pdf of pdfList) {
+                const pdfItem = document.createElement('div');
+                pdfItem.className = 'pdf-item';
+
+                const pdfName = document.createElement('div');
+                pdfName.className = 'pdf-name';
+                pdfName.textContent = pdf.name;
+
+                const pdfPreview = document.createElement('canvas');
+                pdfPreview.className = 'pdf-preview';
+
+                const downloadBtn = document.createElement('a');
+                downloadBtn.className = 'download-btn';
+                downloadBtn.href = pdf.download_url;
+                downloadBtn.textContent = 'Download';
+                downloadBtn.setAttribute('download', '');
+
+                pdfItem.appendChild(pdfName);
+                pdfItem.appendChild(pdfPreview);
+                pdfItem.appendChild(downloadBtn);
+
+                pdfListElement.appendChild(pdfItem);
+
+                // Generate PDF preview
+                try {
+                    const loadingTask = pdfjsLib.getDocument(pdf.download_url);
+                    const pdfDocument = await loadingTask.promise;
+                    const page = await pdfDocument.getPage(1);
+                    const scale = 1.5;
+                    const viewport = page.getViewport({scale: scale});
+
+                    const canvas = pdfPreview;
+                    const context = canvas.getContext('2d');
+                    canvas.height = viewport.height;
+                    canvas.width = viewport.width;
+
+                    const renderContext = {
+                        canvasContext: context,
+                        viewport: viewport
+                    };
+                    await page.render(renderContext);
+                } catch (error) {
+                    console.error(`Error rendering preview for ${pdf.name}:`, error);
+                    pdfPreview.insertAdjacentHTML('afterend', '<p>Preview not available</p>');
+                }
+            }
+        }
+
+        document.getElementById('upload-more-btn').addEventListener('click', () => {
+            // Replace 'YOUR_REDIRECT_URL' with the specific web page URL you want to redirect to
+            window.location.href = 'https://pdastudents.github.io/Academic-Resources/8sem/upload.html';
+        });
+
+        renderPDFList();
+    </script>
+</body>
+</html>
